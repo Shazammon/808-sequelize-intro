@@ -61,7 +61,27 @@ const userCRUD = async () => {
     } catch(err) {
         console.warn(err)
     }
+
+    
 }
 
 // dont forget to invoke
-userCRUD()
+// userCRUD()
+
+async function newPet() {
+    try {
+      // literally just find the first user
+      const user = await db.user.findOne()
+      // now that we found them, lets give them a pet!
+      const newPet = await user.createPet({
+        name: 'Spot',
+        species: 'Mutt Dog'
+      })
+      // look at the dog!!!
+      console.log(newPet)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  // don't forget to invoke your function
+  newPet()
